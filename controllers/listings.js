@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
 
   // If a search query is present, filter by country (case-insensitive)
   if (query) {
-    filter.country = { $regex: query, $options: "i" };
+    filter.location = { $regex: query, $options: "i" };
   }
 
   // If a category is present, filter by category
