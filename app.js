@@ -85,6 +85,10 @@ async function main(){
   await mongoose.connect(dbUrl);
 }
 
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
 
 const validateReview=(req,res,next)=>{
   let {error}  = reviewSchema.validate(req.body);
