@@ -1,0 +1,243 @@
+<% layout("/layouts/boilerplate") -%>
+<style>
+  a {
+  text-decoration: none; /* Removes underline */
+}
+
+#filters {
+  position: fixed; /* Ensures the filters stay at the top */
+  top: 60px; /* Adjust this to match the height of your navbar */
+  left: 0;
+  width: 100%; /* Full width */
+  z-index: 1000; /* Keeps it above other elements */
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure body content starts below the filters */
+.content {
+  margin-top: 40px; /* Pushes content below the filters */
+}
+
+/* Individual filter button styling */
+#filter {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  width: 90px;
+  height: 70px;
+  padding: 8px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Filter icons */
+#filter i {
+  font-size: 20px;
+  color: #dc3545;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* Hover effect */
+#filter i:hover {
+  color: #f0939c;
+}
+
+/* Filter text styling */
+#logoParagraph {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+/* 🌍 Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  #filters {
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    padding: 5px;
+    top: 80px; /* Adjust if needed */
+  }
+
+  #filter {
+    width: 80px;
+    height: 75px;
+    padding: 6px;
+  }
+
+  #filter i {
+    font-size: 16px;
+  }
+
+  #logoParagraph {
+    font-size: 10px;
+    white-space: nowrap; /* Ensures text is in a single line */
+  }
+}
+
+</style>
+<body>
+  <div class="content">
+   <div id="filters">
+    <div id="filters">
+      <!-- Riverside -->
+      <a href="/listings?category=Riverside"> 
+        <div id="filter">
+          <i class="fa-solid fa-water"></i>
+          <p id="logoParagraph">Riverside</p>
+        </div>
+      </a>
+    
+      <!-- Hilltop -->
+      <a href="/listings?category=Hilltop"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-mountain"></i>
+          <p id="logoParagraph">Hilltop</p>
+        </div>
+      </a>
+    
+      <!-- Forest -->
+      <a href="/listings?category=Forest"> 
+        <div id="filter">
+          <i class="fa-solid fa-tree"></i>
+          <p id="logoParagraph">Forest</p>
+        </div>
+      </a>
+    
+      <!-- Lakefront -->
+      <a href="/listings?category=Lakefront"> 
+        <div id="filter">
+          <i class="fa-solid fa-water"></i>
+          <p id="logoParagraph">Lakefront</p>
+        </div>
+      </a>
+    
+      <!-- Desert -->
+      <a href="/listings?category=Desert">
+        <div id="filter">
+          <i class="fa-solid fa-sun"></i>
+          <p id="logoParagraph">Desert</p>
+        </div>
+      </a>
+    
+      <!-- Island -->
+      <a href="/listings?category=Island"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <p id="logoParagraph">Island</p>
+        </div>
+      </a>
+    
+      <!-- Snowy Region -->
+      <a href="/listings?category=SnowyRegion"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-snowflake"></i>
+          <p id="logoParagraph">SnowyRegion</p>
+        </div>
+      </a>
+    
+      <!-- Heritage Town -->
+      <a href="/listings?category=HeritageTown"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-landmark"></i>
+          <p id="logoParagraph">Heritage Town</p>
+        </div>
+      </a>
+      <!-- Fort Area -->
+      <a href="/listings?category=FortArea">
+        <div id="filter">
+          <i class="fa-solid fa-chess-rook"></i>
+          <p id="logoParagraph">Fort Area</p>
+        </div>
+      </a>
+    
+      <!-- City Palace -->
+      <a href="/listings?category=CityPalace">
+        <div id="filter">
+          <i class="fa-solid fa-city"></i>
+          <p id="logoParagraph">City Palace</p>
+        </div>
+      </a>
+    
+      <!-- Countryside -->
+      <a href="/listings?category=Countryside">
+        <div id="filter">
+          <i class="fa-solid fa-home"></i>
+          <p id="logoParagraph">Countryside</p>
+        </div>
+     </a>
+    
+      <!-- Coastal -->
+      <a href="/listings?category=Coastral"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-water"></i>
+          <p id="logoParagraph">Coastral</p>
+        </div>
+      </a>
+    
+      <!-- Temple Complex -->
+      <a href="/listings?category=TempleComplex">
+        <div id="filter">
+          <i class="fa-solid fa-church"></i>
+          <p id="logoParagraph">Temple Complex</p>
+        </div>
+      </a>
+    
+      <!-- Tea Garden Estate -->
+      <a href="/listings?category=TeaGarden"> 
+
+        <div id="filter">
+          <i class="fa-solid fa-mug-hot"></i>
+          <p id="logoParagraph">Tea Garden</p>
+        </div>
+      </a>
+    </div>
+    
+  </div>
+</div>
+
+
+  <ul>
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <%for(let listing of allListings){%>
+        <a href="/listings/<%= listing._id%>" class="listing-link">
+          <div class="card listing-card col">
+            <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+
+            <div class="card-img-overlay"></div>
+
+            <div class="card-body">
+              <p class="card-text">
+                <b><%=listing.title%></b>
+                 <br>
+                 &#8377;<%= (listing.price || 0).toLocaleString("en-IN") %>/night
+              </p>
+            </div>
+          </div>
+        </a>
+
+      <%}
+      %>
+      </div>
+ 
+  </ul>
+</div>
+</body>

@@ -1,0 +1,67 @@
+<style>
+  .navsearch {
+  margin-top: 20px;
+  width: 30%;
+}
+.navform{
+  height: 40px;
+  border-radius:  25px 0 0 25px ;
+}
+.search-btn {
+  margin-left:0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Space between icon and text */
+  border-radius: 0 25px 25px 0; /* Round right side */
+  border: 1px solid #ccc;
+  background-color: #dc3545; /* Bootstrap danger red */
+  color: white;
+  padding: 8px 15px; /* Adjust padding for better spacing */
+  height: 40px; /* Ensure uniform height */
+}
+
+/* Search button hover effect */
+.search-btn:hover {
+  background-color: #bb2d3b; /* Darker red */
+}
+
+.search-icon {
+  font-size: 16px; /* Adjust icon size */
+}
+
+</style>
+<nav class="navbar navbar-expand-sm bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"  >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+  
+        <a class="nav-link" href="/listings">Explore</a>
+        
+      </div>
+      <div class="container-fluid navsearch">
+        <form class="d-flex" role="search" action="/listings" method="GET">
+          <input class="form-control navform me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+          <button class="btn search-btn" type="submit"><i class="fa fa-search"></i> Search</button>
+        </form>
+      </div>
+      
+      
+    
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add your Rajbari</a>
+        <% if(!currUser){ %>
+          <a class="nav-link"  href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+        <% if(currUser){ %>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>  
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

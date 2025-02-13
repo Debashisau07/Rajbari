@@ -1,0 +1,67 @@
+
+  <% layout("/layouts/boilerplate") -%>
+  <body>
+    <div class="content">
+    <h3>Create a new Listing</h3>
+    <!-- Form with 'novalidate' to prevent native validation -->
+    <form method="POST" action="/listings" class="newForm "novalidate class="needs-validation" enctype="multipart/form-data">
+      
+      <!-- Title Field -->
+       <div class="form-group newForm">
+         <input name="title" placeholder="enter title" type="text" class="form-control is-invalid" required>
+         <div class="valid-feedback ">
+          Looks good!
+        </div>
+       </div>
+  
+      <!-- Description Field -->
+       <div class="form-group newForm">
+         <textarea name="description" placeholder="enter description" class="form-control is-invalid" required></textarea>
+         <div class="valid-feedback ">
+          Looks good!
+        </div>
+       </div>
+      
+      <!-- Image Field (Optional) -->
+      <!-- <input name="image" placeholder="enter image URL" type="text" class="form-control"> -->
+      <input name="image" placeholder="upload new image" type="file" class="form-control mt-2 mb-0" required>
+  
+      <!-- Price Field -->
+       <div class="form-group newForm">
+         <input name="price" placeholder="enter price" type="number" class="form-control is-invalid" required>
+         <div class="invalid-feedback ">
+          Please provide a valid Price.
+        </div>
+       </div>
+      
+      <!-- Country Field -->
+       <div class="form-group newForm">
+         <input name="country" placeholder="enter country" type="text" class="form-control is-invalid" required>
+         <div class="invalid-feedback " >
+          Please provide a valid Country.
+        </div>
+       </div>
+      
+      <!-- Location Field -->
+       <div class="form-group newForm">
+         <input name="location" placeholder="enter location" type="text" class="form-control is-invalid" required>
+         <div class="invalid-feedback error-message">
+          Please provide a valid location.
+        </div>
+       </div>
+       <!-- catagory -->
+       <div class="form-group newForm">
+        <input name="category" placeholder="enter category" type="text" class="form-control is-invalid" required>
+        <div class="invalid-feedback error-message">
+         Please provide a valid category.
+       </div>
+      </div>
+      <!-- Submit Button -->
+      <button class="newDetails btn btn-danger mt-3" type="submit">Add</button>
+  
+    </form>
+  </div>
+    
+  </body>
+  
+

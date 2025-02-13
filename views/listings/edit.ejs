@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+  <div class="container-fluid">
+  <div class="content">
+  <h3>Edit your Listing</h3>
+  <form method="POST" action="/listings/<%=listing._id%>" class="editForm needs-validation" novalidate enctype="multipart/form-data">
+    <div class="form-group">
+      <input name="title" value="<%=listing.title%>" type="text" required>
+      
+    </div>
+    <br>
+    
+    <div class="form-group editForm">
+      <textarea name="description" placeholder="<%=listing.description%>"></textarea  required>
+        
+    </div>
+    <br>
+    
+    
+      <input name="image" type="file"class="form-control" >
+    
+    <br>
+    <div class="form-group editForm">
+      <input name="price" value="<%=listing.price%>" type="number"  required>
+
+    </div>
+    <br>
+    
+    <div class="form-group editForm">
+      <input name="country" value="<%=listing.country%>" type="text"  required>
+    </div>
+    <br>
+    
+    <div class="form-group editForm">
+      <input name="location" value="<%=listing.location%>" type="text"  required>
+    </div>
+    <br>
+    
+      <div class="form-group editForm">
+        <input name="category" placeholder="edit category" type="text"  required>
+    </div>
+    <br>
+    
+    <button class="editDetails submit">Edit</button>
+    
+  </form>
+</div>
+</div>
+</body>

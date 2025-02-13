@@ -1,0 +1,105 @@
+<% layout("layouts/boilerplate") %>
+<body>
+  <div class="content">
+    <div class="row">
+      <div class="col-8 offset-3 mt-2">
+        <h3><%= listing.title %></h3>
+      </div>
+      <div class="card col-8 offset-3 mt-1 listing-card">
+        <img src="<%= listing.image.url %>" class="card-img-top show-image" alt="listing_image">
+        <div class="card-body">
+          <p class="card-text">@<%= listing.owner.username %></p>
+          <p class="card-text"><%= listing.description %></p>
+          <p class="card-text">&#8377;<%= (listing.price ? listing.price.toLocaleString("en-IN") : "N/A") %>/night</p>
+          <p class="card-text"><%= listing.location %></p>
+          <p class="card-text"><%= listing.country %></p>
+        </div>
+      </div>
+    </div>
+    <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
+      <div class="btns offset-3 mb-2">
+        <a class="btn btn-outline-success" href="/listings/<%= listing._id %>/edit">Edit </a>
+        <form method="post" action="/listings/<%= listing._id %>/DELETE">
+          <button class="btn btn-outline-danger">Delete this Listing</button>
+        </form>
+      </div>
+    <% } %>
+    <div class="col-8 offset-3 mt-3 mb-3">
+      <% if(currUser){ %>
+        <h4>Give your review</h4>
+        <form method="post" action="/listings/<%= listing.id %>/reviews" novalidate class="needs-validation">
+          <div class="mt-1 mb-1">
+            <level for="rating" class="form-lavel">Rating</level>
+            <input class="form-range" type="range" min="1" max="10" id="rating" name="rating">
+          </div>
+          <div class="mt-1 mb-3">
+            <level for="comment" class="form-lavel">Comments</level>
+            <textarea name="comment" id="comment" cols="1" rows="5" class="form-control" required></textarea>
+    
+            <div class="invalid-feedback">Please add some comments for review</div>
+          </div>
+          <button class="btn btn-outline-dark">Submit</button>
+        </form>
+      <% } %>
+     </div>
+      <div class="col-8 offset-3 mt-3 mb-3">
+        <% if (listing.reviews && listing.reviews.length > 0) { %>
+        <div class="row">
+         <p><b>All Reviews</b></p>
+         <% for(review of listing.reviews){%>
+           <div class="card col-5 mb-3 ms-1 px-4 py-3">
+             <div class="card-body">
+               <h5 class="card-title"><%= review.author.username%></h5>
+               <p class="card-text"><%= review.comment%></p>
+               <p class="card-text"><%= review.rating%>Star</p>
+               <form method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id%>">
+                 <button class="btn btn-sm btn-outline-danger">Delete</button>
+               </form>
+             </div>
+         <%}
+         %>
+           </div>
+       </div>
+      <% } %>
+
+    <!-- Map Section -->
+    <div class="col-12 mt-2 mb-2 rounded shadow-sm p-2 bg-light">
+      <h4 class="mb-3">Where you'll be?</h4>
+      <div id="map" style="height: 290px; width: 750px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></div>
+    </div>
+  </div>
+  
+
+  <!-- Include Leaflet.js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var location = "<%= listing.location %>"; // Fetch location dynamically from the listing
+
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length === 0) {
+            alert("Location not found.");
+            return;
+          }
+
+          var lat = data[0].lat;
+          var lon = data[0].lon;
+
+          var map = L.map('map').setView([lat, lon], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          L.marker([lat, lon]).addTo(map)
+            .bindPopup("<b><%= listing.title %></b><br><%= listing.location %>")
+            .openPopup();
+        })
+        .catch(error => console.error("Geocoding error:", error));
+    });
+  </script>
+</body>

@@ -1,0 +1,51 @@
+1) Listing Model schema 
+2) Sample data for DB in data.js file 
+3) Initialized database 
+4) Index Route
+
+
+
+5) Middlewares ==>
+==>  Execute any code 
+==> Make changes to the request and the response object 
+==> Ends the request and response cycle 
+==> call the next middleware function in the stack 
+
+6) Creating utility Middleware 
+7) 5 good must read middle wares documentation
+8) Handling Async error / Using Try Catch / Using WrapAsync/ Mongoose Errors 
+
+9) For easy Schema Validation need to download a package Joi from NPM 
+
+10) Database Relationship
+(read a document in mongoDB caled rules of thumb for mongodb schema design)
+11) Handling deletion using mongoose middlewares.(pre/post)
+
+12) Pull operator in mongoose
+
+13) What is Express Router ?
+    ==> A way to organize your Express application such that our primary app.js file does not become bloated.
+    ===> For example we have 2 Schema Users and Posts and currently Routes related to these Schemas are written in the same file app.js but for these reason the length of the file is increasing and code redability is decreasing , to resolve this problem we will write routes of 2 different Schemas into 2 different file and then we will require it in the app.js file
+
+14) Web Cookies , cookie parser and Signed Cookie 
+15) What is State, Stateful Protocol and Stateless Protocol ?
+16)Implement Sessions in project
+
+17) Cookie in Session option 
+==> Basically we set the expiry time of the cookie.
+
+18) Implement Flash-message in Project 
+
+
+===> Authentication and Authorization 
+==> Hashing
+ For storing password we used "Hashing". It is a One-way function (from input we can get output but the viseversa is not possible).And also for any any length of input the output is diffrent but lenght is same.
+
+==> Salting 
+Password Salting is a technique to protect passwords stored in database by adding a String of 32 or more characters and then Hashing them.
+
+==> install passport (read documents in website passportjs.org)
+-> it is a library that helps in authentication and authorization.
+=> also install passport-local and for mongodb database install passport-local-mongoose
+
+==> Now create User Schema 
