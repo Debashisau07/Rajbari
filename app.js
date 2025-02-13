@@ -86,10 +86,6 @@ async function main(){
 }
 
 
-app.get("/",(req,res)=>{
-  res.send("hi, Root is here")
-})
-
 const validateReview=(req,res,next)=>{
   let {error}  = reviewSchema.validate(req.body);
   if(error){
